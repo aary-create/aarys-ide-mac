@@ -1,0 +1,31 @@
+{
+  "name": "aarys-ide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aary's IDE — Universal AI Agent for All Devices, Workspaces, and Capabilities",
+  "workspaces": [
+    "packages/shared",
+    "packages/backend",
+    "packages/frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev -w packages/backend",
+    "dev:frontend": "npm run dev -w packages/frontend",
+    "build": "npm run build -w packages/shared && npm run build -w packages/backend && npm run build -w packages/frontend",
+    "build:shared": "npm run build -w packages/shared",
+    "build:backend": "npm run build -w packages/backend",
+    "build:frontend": "npm run build -w packages/frontend",
+    "build:desktop": "cd packages/desktop && cargo tauri build",
+    "test": "npm run test -w packages/backend",
+    "lint": "eslint packages/*/src/**/*.{ts,tsx}",
+    "clean": "rm -rf packages/*/dist packages/*/node_modules node_modules"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

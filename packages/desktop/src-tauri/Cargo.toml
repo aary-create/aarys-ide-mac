@@ -1,0 +1,25 @@
+[package]
+name = "aarys-ide"
+version = "1.0.0"
+description = "Aary's IDE — Universal AI Agent"
+authors = ["Aary"]
+edition = "2021"
+
+[dependencies]
+tauri = { version = "2", features = ["shell-open", "dialog", "fs", "clipboard", "notification", "window", "process"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", features = ["json"] }
+screenshots = "0.8"
+enigo = "0.2"
+arboard = "3"
+dirs = "5"
+which = "7"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
