@@ -11,6 +11,7 @@ import { wsClient } from './api/websocket.js';
 // Views
 import { ChatView } from './components/chat/ChatView.js';
 import { AgentView } from './components/agent/AgentView.js';
+import { PreviewView } from './components/preview/PreviewView.js';
 import { ComputerView } from './components/computer/ComputerView.js';
 import { ProjectsView } from './components/projects/ProjectsView.js';
 import { BrowserView } from './components/browser/BrowserView.js';
@@ -50,6 +51,8 @@ export const App: React.FC = () => {
         return <ChatView />;
       case 'agent':
         return <AgentView />;
+      case 'preview':
+        return <PreviewView />;
       case 'computer':
         return <ComputerView />;
       case 'projects':

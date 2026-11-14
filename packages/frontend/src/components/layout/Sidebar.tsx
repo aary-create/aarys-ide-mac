@@ -7,6 +7,7 @@ import React from 'react';
 import {
   MessageSquare,
   Bot,
+  Eye,
   Monitor,
   FolderGit2,
   Compass,
@@ -30,6 +31,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { id: 'chat', label: 'Chat', icon: MessageSquare },
   { id: 'agent', label: 'Agent', icon: Bot },
+  { id: 'preview', label: 'Live Preview', icon: Eye, badge: 'LIVE' },
   { id: 'computer', label: 'Computer', icon: Monitor },
   { id: 'projects', label: 'Projects', icon: FolderGit2 },
   { id: 'browser', label: 'Browser', icon: Compass },
@@ -82,6 +84,11 @@ export const Sidebar: React.FC = () => {
             >
               <Icon className="w-4 h-4 shrink-0" />
               {!sidebarCollapsed && <span className="ml-3 truncate">{item.label}</span>}
+              {!sidebarCollapsed && item.badge && (
+                <span className="ml-auto px-1.5 py-0.5 text-[9px] font-bold rounded bg-emerald-500/15 text-emerald-500 dark:text-emerald-400 border border-emerald-500/20">
+                  {item.badge}
+                </span>
+              )}
             </button>
           );
         })}

@@ -4,7 +4,7 @@
 // ============================================================
 
 import React, { useEffect, useState } from 'react';
-import { Folder, FileCode, Plus, Save, GitBranch } from 'lucide-react';
+import { Folder, FileCode, Plus, Save, GitBranch, Eye } from 'lucide-react';
 import Editor from '@monaco-editor/react';
 import { useProjectStore } from '../../stores/useProjectStore.js';
 import { useAppStore } from '../../stores/useAppStore.js';
@@ -12,7 +12,7 @@ import { Button } from '../ui/index.js';
 
 export const ProjectsView: React.FC = () => {
   const { projects, activeProject, files, activeFile, fileContent, loadProjects, selectProject, loadFile, saveActiveFile } = useProjectStore();
-  const { theme } = useAppStore();
+  const { theme, setActiveSection } = useAppStore();
   const [editorVal, setEditorVal] = useState(fileContent);
 
   useEffect(() => {
@@ -86,12 +86,18 @@ export const ProjectsView: React.FC = () => {
           <span className="text-xs font-mono text-slate-600 dark:text-slate-400">
             {activeFile || 'No file selected'}
           </span>
-          {activeFile && (
-            <Button size="sm" onClick={() => saveActiveFile(editorVal || '')} className="h-7 text-xs">
-              <Save className="w-3 h-3 mr-1" />
-              Save
+          <div className="flex items-center space-x-2">
+            <Button size="sm" variant="secondary" onClick={() => setActiveSection('preview')} className="h-7 text-xs">
+              <Eye className="w-3 h-3 mr-1 text-indigo-500" />
+              Live Preview
             </Button>
-          )}
+            {activeFile && (
+              <Button size="sm" onClick={() => saveActiveFile(editorVal || '')} className="h-7 text-xs">
+                <Save className="w-3 h-3 mr-1" />
+                Save
+              </Button>
+            )}
+          </div>
         </div>
 
         <div className="flex-1">
