@@ -46,8 +46,11 @@ export const useAppStore = create<AppState>((set) => ({
       document.documentElement.classList.toggle('dark', next === 'dark');
       return { theme: next };
     }),
-  activeSection: 'chat',
-  setActiveSection: (activeSection) => set({ activeSection }),
+  activeSection: ((typeof window !== 'undefined' && window.location.hash ? window.location.hash.replace('#', '') : null) || (typeof localStorage !== 'undefined' ? localStorage.getItem('aary_active_section') : null) || 'chat') as NavigationSection,
+  setActiveSection: (activeSection) => {
+    if (typeof localStorage !== 'undefined') localStorage.setItem('aary_active_section', activeSection);
+    set({ activeSection });
+  },
   sidebarCollapsed: false,
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
   searchQuery: '',
