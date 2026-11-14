@@ -33,6 +33,8 @@ export function getDb(): Database.Database {
   return _db;
 }
 
+export const db: Database.Database = getDb();
+
 /**
  * Create all required tables if they don't exist.
  */

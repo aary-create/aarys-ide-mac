@@ -13,8 +13,8 @@ import type {
 import { type AIAdapter, fetchAI, parseSSEStream } from './base.js';
 
 export class OpenAIAdapter implements AIAdapter {
-  readonly type = 'openai';
-  readonly name = 'OpenAI';
+  readonly type: any = 'openai';
+  readonly name: string = 'OpenAI';
 
   async testConnection(apiKey: string, baseUrl?: string): Promise<boolean> {
     const url = `${baseUrl || 'https://api.openai.com/v1'}/models`;

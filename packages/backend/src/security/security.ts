@@ -33,7 +33,7 @@ export function resolveApproval(id: string, approved: boolean): boolean {
   const req = pendingApprovals.get(id);
   if (!req) return false;
   req.status = approved ? 'approved' : 'rejected';
-  logAudit('system', approved ? 'approval_granted' : 'approval_rejected', req, req.risk);
+  logAudit('system', approved ? 'approval_granted' : 'approval_rejected', req as unknown as Record<string, unknown>, req.risk);
   return true;
 }
 

@@ -12,7 +12,7 @@ export function saveProjectMemory(userId: string, project: ProjectMemory) {
 }
 
 export function getProjectMemory(userId: string, projectId: string): ProjectMemory | null {
-  const results = searchMemory({ category: 'project', projectId, limit: 1 }, userId);
+  const results = searchMemory({ query: '', category: 'project', projectId, limit: 1 }, userId);
   if (results.length === 0) return null;
   try { return JSON.parse(results[0].entry.content); } catch { return null; }
 }

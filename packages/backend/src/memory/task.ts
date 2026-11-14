@@ -5,5 +5,5 @@ export function saveTaskMemory(userId: string, taskId: string, content: string, 
   return createMemory({ userId, category: 'task', content, tags, taskId, source: 'agent', importance: 0.7 });
 }
 export function getTaskHistory(userId: string, taskId: string) {
-  return searchMemory({ category: 'task', taskId, limit: 50 }, userId);
+  return searchMemory({ query: '', category: 'task', taskId, limit: 50 }, userId);
 }
